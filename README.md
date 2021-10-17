@@ -1,5 +1,17 @@
 # AngularEcomm
 
+AngularEcomm is a ecommerce platform base working with Angular 11 and Firebase
+- Main portal
+-- Products
+-- Category products
+-- Products search
+-- Filters
+-- Shoping card
+- Admin portal
+- Customer portal
+
+===
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
 
 ## Development server
