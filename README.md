@@ -2,11 +2,11 @@
 
 AngularEcomm is a ecommerce platform base working with Angular 11 and Firebase
 - Main portal
--- Products
--- Category products
--- Products search
--- Filters
--- Shoping card
+  - Products
+  - Category products
+  - Products search
+  - Filters 
+  - Shoping card
 - Admin portal
 - Customer portal
 
