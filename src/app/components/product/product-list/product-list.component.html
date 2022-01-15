@@ -1,1 +1,11 @@
 <p>product-list works!</p>
+
+<ul>
+  <li *ngFor="let p of products">
+para llamar también a las categorias, y machearlo con la correcta dentro de este bucle de productos?
+    <span>{{ p?.name }}</span>
+    <span>{{ p.price }}</span>
+  </li>
+</ul>
+
+<button (click)="goToNewProduct()">Crear producto</button>

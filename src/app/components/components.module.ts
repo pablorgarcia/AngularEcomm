@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductListComponent } from './product/product-list/product-list.component';
-import { ProductCrudComponent } from './product/product-crud/product-crud.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { COMPONENTS } from './components.constant';
 
 
 @NgModule({
-  declarations: [
-    ProductListComponent,
-    ProductCrudComponent
-  ],
+  declarations: COMPONENTS,
+  exports: COMPONENTS,
   imports: [
-    CommonModule
-  ],
-  exports: [
-    ProductListComponent,
-    ProductCrudComponent
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ComponentsModule { }
