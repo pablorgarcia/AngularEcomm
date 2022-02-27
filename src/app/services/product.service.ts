@@ -11,14 +11,24 @@ export class ProductService {
   // Almacenamos los productos de la DB
   private productCollection = collection(ConfigService.getFirestoreApp(), 'Product');
 
+  private products: Product[];
+
   constructor() {}
 
   async getProducts(): Promise<Product[]> {
-    // Traemos los productos que estaán en la DB
-    const productSnapshot = await getDocs(this.productCollection);
-    const productList = productSnapshot.docs.map(doc => doc.data());
-    return productList as Product[];
+    if (!this.products) {
+      // Traemos los productos que estaán en la DB
+      const productSnapshot = await getDocs(this.productCollection);
+      const productList = productSnapshot.docs.map(doc => ({id: doc?.id, ...doc?.data()}));
+      this.products = productList as Product[];
+    }
+    return this.products;
   }
+
+  async getProductDetail(id: string): Promise<Product> {
+    const products = this.products ? this.products : await this.getProducts();
+    return products.find(product => product.id === id);
+  };
 
   setProduct(product: Product) {
     // enviamos los productos creados en el formulario del product-crud a la DB

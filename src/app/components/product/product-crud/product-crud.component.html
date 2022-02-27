@@ -26,6 +26,13 @@
     <input formControlName="sku">
   </div>
 
+  <div>
+    <label>Categoria: </label>
+    <mat-select *ngIf="productCategoryOptions?.length" [formControl]="productForm.get('idProductCategory')">
+      <mat-option *ngFor="let option of productCategoryOptions" [value]="option.value">{{option?.name}}</mat-option>
+    </mat-select>
+  </div>
+
   <button type="submit" (click)="submitProduct()" [disabled]="!productForm.valid">Subir un producto</button>
 
 </form>

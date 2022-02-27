@@ -15,8 +15,8 @@
   </div>
 
   <div>
-    <label>sku: </label>
-    <input formControlName="sku">
+    <label>ParentCode: </label>
+    <input type="number" formControlName="parentCode">
   </div>
 
   <button type="submit" (click)="submitForm()" [disabled]="!productCategoryForm.valid">Subir un producto</button>

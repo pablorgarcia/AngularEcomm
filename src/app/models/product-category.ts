@@ -1,6 +1,6 @@
 export interface ProductCategory {
   // https://resources.fabric.inc/blog/ecommerce-data-model
-  id: number;
+  id: string;
   name: string;
   description: string;
   code: number;
