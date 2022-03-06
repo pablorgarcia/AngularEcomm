@@ -1,0 +1,12 @@
+<p>subheader works!</p>
+
+<div>
+  <button app-button [data]="dataButton" [disabled]="true" *ngIf="data?.hasBack" (click)="goBack()">
+    <!--mat-icon>arrow_back_ios</mat-icon-->
+  </button>
+  <h2 *ngIf="data?.title">{{ data.title }}</h2>
+  <p *ngIf="data?.description">{{ data.description }}</p>
+</div>
+<div *ngIf="data?.hasBreadcrumb">
+  Aquí ponemos un breadcrumb
+</div>
