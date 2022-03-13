@@ -1,4 +1,4 @@
-<p>product-list works!</p>
+<app-subheader [data]="dataSubheader" (onBack)="goBack()"></app-subheader>
 
 <mat-list>
   <mat-list-item *ngFor="let product of products" (click)="goToProductDetail(product?.id)">
@@ -7,4 +7,4 @@
   </mat-list-item>
 </mat-list>
 
-<button (click)="goToNewProduct()">Crear producto</button>
+<button app-button [data]="dataButton" (click)="goToNewProduct()"></button>

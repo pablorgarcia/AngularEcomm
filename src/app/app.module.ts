@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './pages/layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginModule } from './pages/login/login.module';
+import { UserModule } from './pages/user/user.module';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     AppRoutingModule,
     LayoutModule,
+    LoginModule,
+    UserModule,
     BrowserAnimationsModule
   ],
   providers: [],

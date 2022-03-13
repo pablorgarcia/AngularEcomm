@@ -17,7 +17,7 @@ export class SubheaderComponent implements OnInit {
     text: 'volver'
   }
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {}
 

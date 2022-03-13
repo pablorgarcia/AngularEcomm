@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { Product } from 'src/app/models/product';
 import { ProductCategory } from 'src/app/models/product-category';
+
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ProductService } from 'src/app/services/product.service';
+
+import { PriceData } from 'src/app/shared/components/price/price.interface';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +19,11 @@ export class ProductDetailComponent implements OnInit {
   private productId: string;
   public product: Product;
   public productCategory: ProductCategory;
+
+  // PORQUÉ NO FUNCIONA ?
+  public dataPrice: PriceData = {
+    price: 'precio actual'
+  }
 
   constructor(
     private readonly route: ActivatedRoute,

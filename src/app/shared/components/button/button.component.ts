@@ -17,9 +17,8 @@ export class ButtonComponent implements OnInit {
   @Input() data: ButtonData;
   @Input() disabled: boolean;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
+import { ButtonData } from 'src/app/shared/components/button/button.interface';
 
 @Component({
   selector: 'app-product-category-crud',
@@ -10,6 +11,11 @@ import { ProductCategoryService } from 'src/app/services/product-category.servic
 export class ProductCategoryCrudComponent implements OnInit {
 
   public productCategoryForm: FormGroup;
+
+  public dataButton: ButtonData = {
+    iconLeft: 'cloud_upload',
+    text: 'Subir un producto'
+  }
 
   constructor(
     private readonly fb: FormBuilder,
@@ -21,7 +27,7 @@ export class ProductCategoryCrudComponent implements OnInit {
       name: ['', [Validators.required]],
       description: [''],
       code: [0],
-      parentCode: [0],
+      parentCode: [],
       created: ['']
     });
   }

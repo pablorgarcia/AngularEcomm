@@ -16,9 +16,13 @@
 
   <div>
     <label>ParentCode: </label>
-    <input type="number" formControlName="parentCode">
+    <input app-input [data]="{
+      placeholder: 'categoria padre',
+      disabled: true
+    }"
+    type="number" formControlName="parentCode">
   </div>
 
-  <button type="submit" (click)="submitForm()" [disabled]="!productCategoryForm.valid">Subir un producto</button>
+  <button type="submit" (click)="submitForm()" app-button [data]="dataButton" [disabled]="!productCategoryForm.valid"></button>
 
 </form>

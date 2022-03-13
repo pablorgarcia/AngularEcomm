@@ -1,0 +1,31 @@
+<form [formGroup]="userForm">
+  <div>
+    <label>Nombre de usuario</label>
+    <input formControlName="username">
+  </div>
+  <div>
+    <label>Nombre</label>
+    <input formControlName="firstname">
+  </div>
+  <div>
+    <label>Apellido</label>
+    <input formControlName="lastname">
+  </div>
+  <div>
+    <label>Email</label>
+    <input formControlName="email" type="email">
+  </div>
+  <div>
+    <label>Teléfono</label>
+    <input formControlName="phone" type="phone">
+  </div>
+  <div>
+    <label>Contraseña</label>
+    <input formControlName="password" type="password">
+  </div>
+  <div>
+    <label>Repetir contraseña</label>
+    <input formControlName="confirmPassword" type="password">
+  </div>
+  <button app-button [data]="{ text: 'Guardar usuario'}" [disabled]="!userForm.valid" (click)="submit()"></button>
+</form>
