@@ -1,1 +1,24 @@
 <p>login works!</p>
+
+<form [formGroup]="loginForm">
+
+  <div>
+    <label>E-mail: </label>
+    <input formControlName="email">
+  </div>
+
+  <div>
+    <label>Password: </label>
+    <input formControlName="password" type="password">
+  </div>
+
+  <button app-button (click)="login()" [disabled]="!loginForm?.valid">Login</button>
+
+</form>
+
+<div>
+  <input type="checkbox" checked="checked">
+  <p>Remember me</p>
+</div>
+
+<p>Forgot your <a href="#">password</a>?</p>
