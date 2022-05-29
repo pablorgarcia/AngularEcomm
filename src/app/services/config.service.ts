@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
-import { firebaseConfig } from './config'
+import { firebaseConfig } from './config';
 /* config example
 const firebaseConfig = {
   apiKey: "apikey-string-hashing",

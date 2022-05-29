@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Product } from 'src/app/models/product';
 import { ProductCategory } from 'src/app/models/product-category';
@@ -20,7 +20,6 @@ export class ProductDetailComponent implements OnInit {
   public product: Product;
   public productCategory: ProductCategory;
 
-  // PORQUÉ NO FUNCIONA ?
   public dataPrice: PriceData = {
     price: 'precio actual'
   }
@@ -28,7 +27,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly productService: ProductService,
-    private readonly productCategoryService: ProductCategoryService
+    private readonly productCategoryService: ProductCategoryService,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +47,10 @@ export class ProductDetailComponent implements OnInit {
   getProductCategory(categoryId: string): void {
     this.productCategoryService.getProductCategoryDetail(categoryId)
       .then(category => this.productCategory = category)
+  }
+
+  goToEdit(): void {
+    this.router.navigate([`/admin/product/edit/${this.productId}`]);
   }
 
 }

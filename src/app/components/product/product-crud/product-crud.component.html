@@ -29,7 +29,11 @@
   <div>
     <label>Categoria: </label>
     <mat-select *ngIf="productCategoryOptions?.length" [formControl]="productForm.get('idProductCategory')">
-      <mat-option *ngFor="let option of productCategoryOptions" [value]="option.value">{{option?.name}}</mat-option>
+      <mat-option
+       *ngFor="let option of productCategoryOptions"
+       [value]="option?.value"
+       [selected]="option?.selected"
+      >{{ option?.name }}</mat-option>
     </mat-select>
   </div>
 

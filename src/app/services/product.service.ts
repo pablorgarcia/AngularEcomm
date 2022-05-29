@@ -35,4 +35,9 @@ export class ProductService {
     addDoc(this.productCollection, product);
   }
 
+
+  updateProduct(product: Product) {
+
+  }
+
 }

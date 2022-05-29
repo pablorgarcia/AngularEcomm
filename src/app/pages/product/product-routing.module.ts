@@ -18,6 +18,10 @@ const routes: Routes = [
       component: ProductCrudComponent
     },
     {
+      path: 'edit/:id',
+      component: ProductCrudComponent
+    },
+    {
       path: 'detail/:id',
       component: ProductDetailComponent
     }
