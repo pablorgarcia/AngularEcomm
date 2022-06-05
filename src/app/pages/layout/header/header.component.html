@@ -5,4 +5,10 @@
   <li>
     <a routerLink="/admin/product-category">Product category</a>
   </li>
+  <li *ngIf="!isLogged">
+    <a routerLink="/login">Login</a>
+  </li>
+  <li *ngIf="isLogged">
+    <a (click)="logout()">Logout</a>
+  </li>
 </ul>

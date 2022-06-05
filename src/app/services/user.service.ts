@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { collection, getDocs, addDoc } from 'firebase/firestore/lite';
 import { User } from '../models/user';
-import { ConfigService } from './config.service';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from '@firebase/app';
 import { firebaseConfig } from './config';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const app = initializeApp(firebaseConfig);
 
@@ -13,7 +12,15 @@ const app = initializeApp(firebaseConfig);
 })
 export class UserService {
 
-  constructor() { }
+  private userSubject: BehaviorSubject<User>;
+  public user$: Observable<User>;
+
+  constructor() {
+    this.userSubject = new BehaviorSubject<User>(
+      JSON.parse(sessionStorage.getItem('user'))
+    );
+    this.user$ = this.userSubject.asObservable();
+  }
 
   async login({email, password}): Promise<any> {
     const auth = getAuth();
@@ -25,7 +32,8 @@ export class UserService {
           .setItem('user', JSON.stringify({
             uid: user.uid,
             token: user['accessToken']
-          }))
+          }));
+          this.userSubject.next(user as any);
           return user;
       })
       .catch((error) => {
@@ -49,5 +57,10 @@ export class UserService {
           const errorMessage = error.message;
           // ..
         });
+  }
+
+  logout() {
+    sessionStorage.removeItem('user');
+    this.userSubject.next(null);
   }
 }

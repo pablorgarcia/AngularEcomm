@@ -78,13 +78,14 @@ export class ProductCrudComponent implements OnInit {
       }
   }
 
-  submitProduct() :void {
+  async submitProduct(): Promise<any> {
     // le pasamos al servicio los productos para enviarlos a la DB
     const product = this.productForm.value;
     if (!this.isEdit) {
-      this.productService.setProduct(product);
+      await this.productService.setProduct(product);
     } else {
-      this.productService.updateProduct(product);
+      const productId = this.route.snapshot.params.id;
+      await this.productService.updateProduct(productId, product);
     }
 
     this.router.navigate(['admin/product']);

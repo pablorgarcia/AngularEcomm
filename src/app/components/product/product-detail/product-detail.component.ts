@@ -53,4 +53,9 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate([`/admin/product/edit/${this.productId}`]);
   }
 
+  async delete() {
+    await this.productService.deleteProduct(this.productId);
+    this.router.navigate(['/admin/product']);
+  }
+
 }

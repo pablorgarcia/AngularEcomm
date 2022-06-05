@@ -1,1 +1,1 @@
-// En la carpeta MODELS definimos el MODELO DE NEGOCIO, la BBDD
+// In the MODELS folder we define the BUSINESS MODEL, the DB
