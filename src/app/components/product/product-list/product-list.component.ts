@@ -46,8 +46,9 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['admin/product/new']);
   }
 
-  goToProductDetail(id: string): void {
-    this.router.navigate([`admin/product/detail/${id}`]);
+  goToProductDetail(name: string): void {
+    name = name.split(' ').join('-');
+    this.router.navigate([`admin/product/detail/${name}`]);
   }
 
   goBack(): void {

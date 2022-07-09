@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { FORM_USER } from 'src/app/services/constants/forms.constant';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -17,29 +18,7 @@ export class UserCrudComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userForm = this.fb.group({
-      username: ['', [Validators.required]],
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')
-        ]
-      ],
-      confirmPassword: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')
-        ]
-      ],
-      email: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-    })
+    this.userForm = this.fb.group(FORM_USER)
   }
 
   submit():void {

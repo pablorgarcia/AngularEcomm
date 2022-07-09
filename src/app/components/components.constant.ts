@@ -4,6 +4,7 @@ import { ProductDetailComponent } from './product/product-detail/product-detail.
 import { ProductCategoryListComponent } from './product-category/product-category-list/product-category-list.component';
 import { ProductCategoryCrudComponent } from './product-category/product-category-crud/product-category-crud.component';
 import { UserCrudComponent } from './user/user-crud/user-crud.component';
+import { RegisterCustomerComponent } from './account/register-customer/register-customer.component';
 
 const COMPONENTS = [
   // Product
@@ -14,7 +15,8 @@ const COMPONENTS = [
   ProductCategoryListComponent,
   ProductCategoryCrudComponent,
   // USER
-  UserCrudComponent
+  UserCrudComponent,
+  RegisterCustomerComponent
 ];
 
 export { COMPONENTS }
