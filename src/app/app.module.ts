@@ -8,6 +8,7 @@ import { LayoutModule } from './pages/layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './pages/login/login.module';
 import { UserModule } from './pages/user/user.module';
+import { AccountModule } from './pages/account/account.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { UserModule } from './pages/user/user.module';
     LayoutModule,
     LoginModule,
     UserModule,
+    AccountModule,
     BrowserAnimationsModule
   ],
   providers: [],

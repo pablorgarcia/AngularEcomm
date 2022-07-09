@@ -26,9 +26,10 @@ export class ProductService {
     return ProductService.products;
   }
 
-  async getProductDetail(id: string): Promise<Product> {
+  async getProductDetail(name: string): Promise<Product> {
+    name = name.split('-').join(' ');
     const products = ProductService.products ? ProductService.products : await this.getProducts();
-    return products.find(product => product.id === id);
+    return products.find(product => product.name === name);
   };
 
   async setProduct(product: Product) {

@@ -44,12 +44,14 @@ export class UserService {
       return user;
   }
 
-  createUser(user: User): void {
+  createUser(user: User, isCustomer = false): void {
     const auth = getAuth();
       createUserWithEmailAndPassword(auth, user.email, user.password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          user['role'] = { admin: !isCustomer };
+          auth.updateCurrentUser(user);
           // ...
         })
         .catch((error) => {
