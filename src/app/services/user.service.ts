@@ -30,6 +30,8 @@ export class UserService {
         const user = userCredential.user;
         sessionStorage
           .setItem('user', JSON.stringify({
+            email,
+            username: email.split('@')[0],
             uid: user.uid,
             token: user['accessToken']
           }));

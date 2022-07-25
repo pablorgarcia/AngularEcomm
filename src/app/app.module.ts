@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './pages/login/login.module';
 import { UserModule } from './pages/user/user.module';
 import { AccountModule } from './pages/account/account.module';
+import { ChatModule } from './pages/chat/chat.module';
+import { AngularFireModule } from '@angular/fire/compat';
+import { firebaseConfig } from './services/config';
 
 
 @NgModule({
@@ -23,8 +26,10 @@ import { AccountModule } from './pages/account/account.module';
     LayoutModule,
     LoginModule,
     UserModule,
+    ChatModule,
     AccountModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

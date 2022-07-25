@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [AuthGuard],
     loadChildren: './pages/admin/admin.module#AdminModule'
+  },
+  {
+    path: 'chat',
+    loadChildren: './pages/chat/chat.module#ChatModule'
   }
 ];
 
