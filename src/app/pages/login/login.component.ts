@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -11,10 +11,10 @@ import { UserService } from '../../services/user.service';
 export class LoginComponent implements OnInit {
 
 
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
 
   constructor(
-    private readonly fb: FormBuilder,
+    private readonly fb: UntypedFormBuilder,
     private readonly userService: UserService,
     private readonly router: Router
   ) { }

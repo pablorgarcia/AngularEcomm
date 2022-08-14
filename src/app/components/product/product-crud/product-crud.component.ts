@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { FORM_PRODUCT } from 'src/app/services/constants/forms.constant';
@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductCrudComponent implements OnInit {
 
-  public productForm: FormGroup;
+  public productForm: UntypedFormGroup;
   public productCategoryOptions: {
     name: string;
     value: string;
@@ -24,7 +24,7 @@ export class ProductCrudComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private readonly fb: FormBuilder,
+    private readonly fb: UntypedFormBuilder,
     private readonly productService: ProductService,
     private readonly productCategory: ProductCategoryService,
     private readonly route: ActivatedRoute

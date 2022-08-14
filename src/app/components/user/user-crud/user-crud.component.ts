@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { FORM_USER } from 'src/app/services/constants/forms.constant';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,10 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserCrudComponent implements OnInit {
 
-  public userForm: FormGroup;
+  public userForm: UntypedFormGroup;
 
   constructor(
-    private readonly fb: FormBuilder,
+    private readonly fb: UntypedFormBuilder,
     private readonly userService: UserService
   ) { }
 

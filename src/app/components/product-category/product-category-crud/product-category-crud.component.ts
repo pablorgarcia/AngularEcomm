@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ButtonData } from 'src/app/shared/components/button/button.interface';
 
@@ -10,7 +10,7 @@ import { ButtonData } from 'src/app/shared/components/button/button.interface';
 })
 export class ProductCategoryCrudComponent implements OnInit {
 
-  public productCategoryForm: FormGroup;
+  public productCategoryForm: UntypedFormGroup;
 
   public dataButton: ButtonData = {
     iconLeft: 'cloud_upload',
@@ -18,7 +18,7 @@ export class ProductCategoryCrudComponent implements OnInit {
   }
 
   constructor(
-    private readonly fb: FormBuilder,
+    private readonly fb: UntypedFormBuilder,
     private readonly productCategoryService: ProductCategoryService
   ) { }
 
