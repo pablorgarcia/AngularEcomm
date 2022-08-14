@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angularecomm2-86f87": {
+      "hosting": {
+        "AngularEcomm": [
+          "angularecomm2-86f87"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angularecomm2-86f87"
+  }
+}
