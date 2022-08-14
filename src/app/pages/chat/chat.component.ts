@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -15,17 +16,22 @@ export class ChatComponent implements OnInit {
   user = JSON.parse(sessionStorage.getItem('user'));
 
   constructor(
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private readonly chatService: ChatService
   ) {}
 
   ngOnInit(): void {
     this.msgForm = this.fb.group({
       msgControl: ['', Validators.required]
-    })
+    });
+
+    this.chats$ = this.chatService.loadMessages();
   }
 
   sendMessage(): void {
-    console.log('enviado');
+    this.chatService.addMessage(this.msgForm.value.msgControl);
+    console.log(this.msgForm.value);
+    this.msgForm.reset();
   }
 
 }

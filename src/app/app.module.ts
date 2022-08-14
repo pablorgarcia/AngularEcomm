@@ -10,8 +10,8 @@ import { LoginModule } from './pages/login/login.module';
 import { UserModule } from './pages/user/user.module';
 import { AccountModule } from './pages/account/account.module';
 import { ChatModule } from './pages/chat/chat.module';
-import { AngularFireModule } from '@angular/fire/compat';
 import { firebaseConfig } from './services/config';
+import { AngularFireModule } from '@angular/fire/compat';
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import { firebaseConfig } from './services/config';
     ChatModule,
     AccountModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [],
   bootstrap: [AppComponent]
