@@ -115,6 +115,16 @@
               "devServerTarget": "AngularEcomm:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "AngularEcomm:build:production",
+            "firebaseProject": "angularecomm2-86f87",
+            "firebaseHostingSite": "angularecomm2-86f87"
+          }
         }
       }
     }

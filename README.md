@@ -1,6 +1,6 @@
 # AngularEcomm
 
-AngularEcomm is a ecommerce platform base working with Angular 11 and Firebase
+AngularEcomm is a ecommerce platform base working with Angular 14 and Firebase
 - Main portal
   - Products
   - Category products
@@ -17,10 +17,11 @@ AngularEcomm is a ecommerce platform base working with Angular 11 and Firebase
   - Product crud (new, edit, delete)
   - Category crud  (new, edit, delete)
   - Sales page
+- Chat
 
 ===
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
 
 ## Development server
 
