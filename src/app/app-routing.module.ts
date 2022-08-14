@@ -7,24 +7,24 @@ const routes: Routes = [
   {
     path: 'login',
     canActivate: [LoginGuard],
-    loadChildren: './pages/login/login.module#LoginModule'
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
   },
   {
     path: 'user',
-    loadChildren: './pages/user/user.module#UserModule'
+    loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
   },
   {
     path: 'account',
-    loadChildren: './pages/account/account.module#AccountModule'
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
   },
   {
     path: 'admin',
     canActivate: [AuthGuard],
-    loadChildren: './pages/admin/admin.module#AdminModule'
+    loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'chat',
-    loadChildren: './pages/chat/chat.module#ChatModule'
+    loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatModule)
   }
 ];
 
