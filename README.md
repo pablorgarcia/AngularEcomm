@@ -8,16 +8,15 @@ AngularEcomm is a ecommerce platform base working with Angular 14 and Firebase
   - Filters
   - Shoping card
 - Customer portal
-  - Login
   - User data
   - Edit user data/notifications
   - Delete account
 - Admin portal
-  - Login
-  - Product crud (new, edit, delete)
+  - Register (Product crud: new, edit, delete)
   - Category crud  (new, edit, delete)
   - Sales page
 - Chat
+- Login / Logout
 
 ===
 
