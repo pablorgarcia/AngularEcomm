@@ -24,6 +24,8 @@ export class ProductDetailComponent implements OnInit {
     price: 'precio actual'
   }
 
+  public isAdmin = false;
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly productService: ProductService,
@@ -32,6 +34,7 @@ export class ProductDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isAdmin = Boolean(window.location.href.includes('admin'))
     this.productId = this.route.snapshot.params?.name;
     this.getProductDetail();
   }

@@ -22,8 +22,8 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   submit() {
-    this.userService.createUser(this.customerFormGroup.value, true);
-    console.log('customer', this.customerFormGroup.value)
+    this.userService.createUser(this.customerFormGroup.value);
+    this.customerFormGroup.reset();
   }
 
 }

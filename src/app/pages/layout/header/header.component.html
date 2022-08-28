@@ -1,13 +1,9 @@
 <ul>
-  <li>
-    <a routerLink="/admin/product">Product</a>
-  </li>
-  <li>
-    <a routerLink="/admin/product-category">Product category</a>
-  </li>
-  <li>
-    <a routerLink="/chat">Chat</a>
-  </li>
+  <ng-template [ngIf]="menu?.length">
+    <li *ngFor="let link of menu">
+      <a routerLink="{{link?.url}}">{{ link?.name }}</a>
+    </li>
+  </ng-template>
   <li *ngIf="!isLogged">
     <a routerLink="/login" ngClass="login">Login</a>
   </li>

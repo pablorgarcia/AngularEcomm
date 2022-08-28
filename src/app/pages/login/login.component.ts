@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
 
   async login() {
     const user = this.loginForm.value;
-    await this.userService.login(user);
-    this.router.navigateByUrl('admin/product');
+    const userLogged = await this.userService.login(user);
+    this.router.navigateByUrl(userLogged.isCustomer ? '/product' : 'admin/product');
   }
 
 }

@@ -25,6 +25,7 @@ export class ProductListComponent implements OnInit {
     iconLeft: 'add',
     text: 'Crear producto'
   }
+  public isAdmin = false;
 
   constructor(
     private readonly router: Router,
@@ -33,6 +34,7 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isAdmin = Boolean(window.location.href.includes('admin'))
     this.getProductList();
   }
 
@@ -48,7 +50,7 @@ export class ProductListComponent implements OnInit {
 
   goToProductDetail(name: string): void {
     name = name.split(' ').join('-');
-    this.router.navigate([`admin/product/detail/${name}`]);
+    this.router.navigate([`${this.isAdmin ? 'admin/' : ''}product/detail/${name}`]);
   }
 
   goBack(): void {

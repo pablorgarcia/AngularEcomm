@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
   },
   {
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
+  },
+  {
     path: 'chat',
     loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatModule)
   }

@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Chat } from '../models/chat';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  private itemsCollection: AngularFirestoreCollection<any>;
+  private itemsCollection: AngularFirestoreCollection<Chat>;
 
   constructor(
     private afs: AngularFirestore,
   ) { }
 
   loadMessages() {
-    this.itemsCollection = this.afs.collection<any>('Chats', ref => ref.orderBy('date', 'asc'));
+    this.itemsCollection = this.afs.collection<Chat>('Chats', ref => ref.orderBy('date', 'asc'));
     return this.itemsCollection.valueChanges();
   }
 
@@ -27,7 +28,7 @@ export class ChatService {
       }))
       user = JSON.parse(sessionStorage.getItem('user'));
     }
-    let message: any = {
+    let message: Chat = {
       name: (user.email || user.name).split('@')[0],
       msg,
       date: new Date().getTime(),
