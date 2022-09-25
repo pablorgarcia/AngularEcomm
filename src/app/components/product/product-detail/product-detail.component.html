@@ -4,5 +4,18 @@
 
 <div app-price [data]="dataPrice"></div>
 
-<button *ngIf="isAdmin" app-button (click)="goToEdit()" [data]="{text: 'Editar'}"></button>
-<button *ngIf="isAdmin" app-button (click)="delete()" [data]="{text: 'Borrar'}"></button>
+<ng-template [ngIf]="!user?.isCustomer">
+  <button app-button (click)="goToEdit()" [data]="{text: 'Editar'}"></button>
+  <button app-button (click)="delete()" [data]="{text: 'Borrar'}"></button>
+</ng-template>
+
+<ng-template [ngIf]="user?.isCustomer">
+  <form [formGroup]="formProductQty">
+    Cantidad: <input type="numer" formControlName="productQty">
+    <button app-button (click)="addShoppingCard(product)" [data]="{text: 'Añadir'}" [disabled]="!formProductQty.valid"></button>
+  </form>
+</ng-template>
+
+
+<!--button *ngIf="isAdmin" app-button (click)="goToEdit()" [data]="{text: 'Editar'}"></button>
+<button *ngIf="isAdmin" app-button (click)="delete()" [data]="{text: 'Borrar'}"></button-->
