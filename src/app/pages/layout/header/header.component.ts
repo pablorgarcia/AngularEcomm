@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
 import { MENU_ADMIN, MENU_CUSTOMER, MENU_GLOBAL } from '../../../services/constants/menu.constant';
 import { UserService } from '../../../services/user.service';
 
@@ -12,10 +13,14 @@ export class HeaderComponent implements OnInit {
 
   isLogged = false;0
   menu = [];
+  private hasShoppingcartProducts = false;
 
-  constructor( private userService: UserService ) { }
+  constructor(
+    private userService: UserService,
+    private shoppingcartService: ShoppingcartService
+    ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.menu = MENU_GLOBAL;
     this.userService.user$.subscribe(user => {
       this.isLogged = Boolean(user);
@@ -30,6 +35,25 @@ export class HeaderComponent implements OnInit {
         this.menu = [...MENU_CUSTOMER, ...this.menu];
       }
     });
+
+    const shoppingcart = await this.shoppingcartService.getShoppingCart();
+    if(shoppingcart?.length) {
+      this.setShoppingCartMenu();
+    }
+
+    this.shoppingcartService.onShoppingcart$.subscribe(shoppingcart => {
+      if(!this.hasShoppingcartProducts){
+        this.setShoppingCartMenu();
+      }
+    })
+  }
+
+  private setShoppingCartMenu(): void {
+    this.menu = [...this.menu, {
+      name: 'shoppingcart',
+      url: '/shoppingcart'
+    }]
+    this.hasShoppingcartProducts = true;
   }
 
   logout(): void {
