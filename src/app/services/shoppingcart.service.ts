@@ -45,8 +45,6 @@ export class ShoppingcartService {
       .find(data => data?.productId === dataShoppingcart?.productId);
 
     if (product) {
-      debugger
-      dataShoppingcart.qty = product.qty + Number(dataShoppingcart.qty);
       const docShoppingcart = await ShoppingcartService.getShoppingCartDetail(product.id)
       await updateDoc(docShoppingcart, dataShoppingcart)
     } else {
