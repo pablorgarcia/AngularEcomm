@@ -31,8 +31,8 @@ export class OrderComponent implements OnInit {
       .then(address => this.customerAddresses = address)
   }
 
-  saveAddress(addressVlaue) {
-
+  saveAddress(addressValue) {
+console.log(addressValue)
   }
 
 }
