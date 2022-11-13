@@ -1,0 +1,33 @@
+<form [formGroup]="userAddressForm">
+  <div>
+    <label>Nombre dirección</label>
+    <input formControlName="name">
+  </div>
+  <div>
+    <label>Direccion 1</label>
+    <input formControlName="addressLine1">
+  </div>
+  <div>
+    <label>Direccion 2</label>
+    <input formControlName="addressLine2">
+  </div>
+  <div>
+    <label>Ciudad</label>
+    <input formControlName="city">
+  </div>
+  <div>
+    <label>Codigo postal</label>
+    <input formControlName="postCode">
+  </div>
+  <div>
+    <label>Pais</label>
+    <input formControlName="country">
+  </div>
+  <div>
+    <label>Favorita</label>
+    <input type="checkbox" formControlName="favourite">
+  </div>
+
+</form>
+
+<button app-button [data]="dataButton" (click)="submit()" [disabled]=""></button>

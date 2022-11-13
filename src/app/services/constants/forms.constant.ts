@@ -32,6 +32,18 @@ const FORM_USER = {
   ],
   email: ['', [Validators.required]],
   phone: ['', [Validators.required]],
+
 }
 
-export { FORM_PRODUCT, FORM_USER }
+
+  const FORM_USER_ADDRESS = {
+    name: ['', Validators.required],
+    addressLine1: ['', Validators.required],
+    addressLine2: [''],
+    postCode: ['', Validators.required],
+    city: ['', Validators.required],
+    country: ['', Validators.required],
+    favourite: [false]
+  }
+
+export { FORM_PRODUCT, FORM_USER, FORM_USER_ADDRESS }

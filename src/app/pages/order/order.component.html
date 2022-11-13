@@ -1,16 +1,15 @@
-<p>shoppingcart works!</p>
-
 <ng-template [ngIf]="productsOnShoppingcart?.length">
 
   <div *ngFor="let product of productsOnShoppingcart">
     <div>
       {{ product?.productName }}
     </div>
-    <button (click)="addProduct(product)" [disabled]="isLoadding">+</button>
     <input type="number" [value]="product?.qty">
-    <button (click)="removeProduct(product)" [disabled]="isLoadding">-</button>
     <span>{{ (product?.price * product?.qty) | number: '1.2-2' }}</span>
   </div>
-  <button app-button [data]="dataButton" (click)="config"></button>
+  <span>{{ totalAmount | number: '1.2-2' }}</span>
 
+</ng-template>
+<ng-template [ngIf]="!customerAddresses?.length">
+  <app-form-user-address (onSubmit)="saveAddress($Event)"></app-form-user-address>
 </ng-template>

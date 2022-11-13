@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingcartService } from '../../services/shoppingcart.service';
 import { ProductService } from '../../services/product.service'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,9 +14,14 @@ export class ShoppingcartComponent implements OnInit {
   public productsOnShoppingcart: any = [];
   public isLoadding = false;
 
+  public dataButton = {
+    text: 'Confirmar'
+  }
+
   constructor(
     private readonly shoppingcartService: ShoppingcartService,
-    private readonly productService: ProductService
+    private readonly productService: ProductService,
+    private readonly router: Router
   ) { }
 
   async ngOnInit() {
@@ -38,6 +44,10 @@ export class ShoppingcartComponent implements OnInit {
       product.qty--;
       this.updateProductLine(product);
     }
+  }
+
+  confirm(): void {
+    this.router.navigateByUrl('/Order');
   }
 
   private updateProductLine(product) {
