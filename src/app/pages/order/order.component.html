@@ -10,6 +10,13 @@
   <span>{{ totalAmount | number: '1.2-2' }}</span>
 
 </ng-template>
-<ng-template [ngIf]="!customerAddresses?.length">
-  <app-form-user-address (onSubmit)="saveAddress($Event)"></app-form-user-address>
+<div *ngIf="!customerAddresses?.length; else customerAddressesTpl">
+  <app-form-user-address (onSubmit)="saveAddress($event)"></app-form-user-address>
+</div>
+<ng-template #customerAddressesTpl>
+  <div *ngFor="let address of customerAddresses">
+    <input type="radio" [value]="address?.id" (change)="setOrderAddress(address)">
+    <label>{{ address?.name }}</label>
+  </div>
 </ng-template>
+<button [disabled]="!orderAddress" (click)="nextOrderStep()">Siguiente</button>

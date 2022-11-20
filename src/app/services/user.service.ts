@@ -87,6 +87,10 @@ export class UserService {
     this.userSubject.next(null);
   }
 
+  getUser() {
+    return JSON.parse(sessionStorage.getItem('user'))
+  }
+
   private changeDateToTime(date: string): number {
     return new Date(date).getTime();
   }

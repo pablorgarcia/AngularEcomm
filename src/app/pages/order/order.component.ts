@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerAddressService } from '../../services/customer-address.service';
+import { OrderService } from '../../services/order.service';
 import { ShoppingcartService } from '../../services/shoppingcart.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-order',
@@ -14,9 +16,12 @@ export class OrderComponent implements OnInit {
 
   public customerAddresses = [];
 
+  public orderAddress;
+
   constructor(
     private readonly shoppingcartService: ShoppingcartService,
-    private readonly customerAddressService: CustomerAddressService
+    private readonly customerAddressService: CustomerAddressService,
+    private readonly orderService: OrderService
   ) { }
 
   async ngOnInit() {
@@ -27,12 +32,37 @@ export class OrderComponent implements OnInit {
         products.map(product => totalAmount = (product?.price * product?.qty) + totalAmount)
         this.totalAmount = totalAmount;
       });
-    await this.customerAddressService.getCustomerAddress()
-      .then(address => this.customerAddresses = address)
+    await this.getCustomerAddressees();
+
   }
 
-  saveAddress(addressValue) {
-console.log(addressValue)
+  async saveAddress(addressValue) {
+    await this.customerAddressService.setCustomerAddress(addressValue);
+    await this.getCustomerAddressees();
+  }
+
+  setOrderAddress(address): void {
+    this.orderAddress = address;
+  }
+
+  async nextOrderStep() {
+    const order = {
+      localId: new Date().getTime(),
+      total: this.totalAmount.toFixed(2),
+      orderCurrency: '€',
+      orderLines: this.productsOnShoppingcart.map(shoppingcartLine => ({orderLine: shoppingcartLine?.id})),
+      orderAddress: this.orderAddress?.id,
+      orderCreated: new Date().getTime()
+    }
+
+    sessionStorage.setItem('order', JSON.stringify({'orderLocalId': order.localId}))
+
+    await this.orderService.setOrder(order);
+  }
+
+  private async getCustomerAddressees() {
+    await this.customerAddressService.getCustomerAddress()
+      .then(addresses => this.customerAddresses = addresses)
   }
 
 }

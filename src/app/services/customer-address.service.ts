@@ -30,4 +30,16 @@ export class CustomerAddressService {
 
     return CustomerAddressService.customerAddress;
   }
+
+  async setCustomerAddress(address) {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    address.userId = user?.uid;
+    await addDoc(this.customerAddressCollection, address);
+    CustomerAddressService.clearAddresses();
+  }
+
+  private static clearAddresses() {
+    CustomerAddressService.customerAddress = null;
+  }
+
 }
