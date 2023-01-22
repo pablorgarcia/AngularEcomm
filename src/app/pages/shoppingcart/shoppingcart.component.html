@@ -11,6 +11,6 @@
     <button (click)="removeProduct(product)" [disabled]="isLoadding">-</button>
     <span>{{ (product?.price * product?.qty) | number: '1.2-2' }}</span>
   </div>
-  <button app-button [data]="dataButton" (click)="config"></button>
+  <button app-button [data]="dataButton" (click)="confirm()"></button>
 
 </ng-template>

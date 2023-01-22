@@ -1,5 +1,5 @@
 <form [formGroup]="userAddressForm">
-  <div>
+  <div *ngIf="!isBilling">
     <label>Nombre dirección</label>
     <input formControlName="name">
   </div>
@@ -23,11 +23,11 @@
     <label>Pais</label>
     <input formControlName="country">
   </div>
-  <div>
+  <div *ngIf="!isBilling">
     <label>Favorita</label>
     <input type="checkbox" formControlName="favourite">
   </div>
 
 </form>
 
-<button app-button [data]="dataButton" (click)="submit()" [disabled]=""></button>
+<button app-button [data]="dataButton" (click)="submit()" [disabled]="!userAddressForm?.valid"></button>

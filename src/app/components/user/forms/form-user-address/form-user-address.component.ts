@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, UntypedFormGroup } from '@angular/forms';
 import { FORM_USER_ADDRESS } from '../../../../services/constants/forms.constant';
 
@@ -12,6 +12,7 @@ export class FormUserAddressComponent implements OnInit {
   public userAddressForm: UntypedFormGroup;
   public dataButton = { text: 'Guardar' }
 
+  @Input() isBilling: boolean = false;
   @Output() onSubmit = new EventEmitter();
 
   constructor(
@@ -19,7 +20,12 @@ export class FormUserAddressComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userAddressForm = this.fb.group(FORM_USER_ADDRESS)
+    this.userAddressForm = this.fb.group(FORM_USER_ADDRESS);
+    if(this.isBilling){
+      const { name } = this.userAddressForm.controls;
+      name.setValidators([]);
+      name.updateValueAndValidity();
+    }
   }
 
   submit(): void {

@@ -13,7 +13,9 @@ import { Observable, Subject } from 'rxjs';
 export class CustomerAddressService {
 
   private customerAddressCollection = collection( ConfigService.getFirestoreApp(), 'CustomerAddress');
+  private CustomerBillingAddressCollection = collection( ConfigService.getFirestoreApp(), 'CustomerBillingAddress');
   private static customerAddress: any[];
+  private static customerBillingAddress: any[];
 
   constructor() { }
 
@@ -38,8 +40,19 @@ export class CustomerAddressService {
     CustomerAddressService.clearAddresses();
   }
 
+  async setCustomerBillingAddress(address) {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    address.userId = user?.uid;
+    await addDoc(this.customerAddressCollection, address);
+    CustomerAddressService.clearBillingAddresses();
+  }
+
   private static clearAddresses() {
     CustomerAddressService.customerAddress = null;
+  }
+
+  private static clearBillingAddresses() {
+    CustomerAddressService.customerBillingAddress = null;
   }
 
 }

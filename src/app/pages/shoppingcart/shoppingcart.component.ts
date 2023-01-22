@@ -47,7 +47,7 @@ export class ShoppingcartComponent implements OnInit {
   }
 
   confirm(): void {
-    this.router.navigateByUrl('/Order');
+    this.router.navigateByUrl('/order');
   }
 
   private updateProductLine(product) {

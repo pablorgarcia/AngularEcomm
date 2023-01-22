@@ -18,6 +18,8 @@ export class OrderComponent implements OnInit {
 
   public orderAddress;
 
+  public isSameCustomAddress: boolean = false;
+
   constructor(
     private readonly shoppingcartService: ShoppingcartService,
     private readonly customerAddressService: CustomerAddressService,
@@ -63,6 +65,22 @@ export class OrderComponent implements OnInit {
   private async getCustomerAddressees() {
     await this.customerAddressService.getCustomerAddress()
       .then(addresses => this.customerAddresses = addresses)
+  }
+
+  public saveBillingAdress(event) {
+    console.log(event)
+  }
+
+  setBillingAddress(): void {
+    this.isSameCustomAddress = !this.isSameCustomAddress;
+    if (this.isSameCustomAddress) {
+      const billingAddress = JSON.parse(JSON.stringify(this.orderAddress));
+      delete billingAddress.id;
+      delete billingAddress.name;
+      delete billingAddress.favourite;
+      this.customerAddressService.setCustomerBillingAddress(billingAddress);
+    }
+
   }
 
 }

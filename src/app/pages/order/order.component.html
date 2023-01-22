@@ -19,4 +19,13 @@
     <label>{{ address?.name }}</label>
   </div>
 </ng-template>
+<div>
+  <h3>Direccion de facturación</h3>
+  <div>
+    <label>Misma dirección de envío
+      <input type="checkbox" (checked)="isSameCustomAddress" (change)="setBillingAddress()" [disabled]="!orderAddress">
+    </label>
+  </div>
+  <app-form-user-address *ngIf="isSameCustomAddress"  (onSubmit)="saveBillingAdress($event)" [isBilling]="true"></app-form-user-address>
+</div>
 <button [disabled]="!orderAddress" (click)="nextOrderStep()">Siguiente</button>
