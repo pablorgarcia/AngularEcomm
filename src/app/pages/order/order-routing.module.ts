@@ -5,7 +5,13 @@ import { OrderComponent } from './order.component';
 const routes: Routes = [
   {
     path: '',
-    component: OrderComponent
+    component: OrderComponent,
+    children: [
+      {
+        path: 'payment-methods',
+        loadChildren: () => import('../order-payment-methods/order-payment-methods.module').then(m => m.OrderPaymentMethodsModule)
+      }
+    ]
   }
 ];
 

@@ -12,11 +12,13 @@ import { AccountModule } from './pages/account/account.module';
 import { ChatModule } from './pages/chat/chat.module';
 import { firebaseConfig } from './services/config';
 import { AngularFireModule } from '@angular/fire/compat';
+import { OrderPaymentMethodsComponent } from './pages/order-payment-methods/order-payment-methods.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OrderPaymentMethodsComponent
   ],
   imports: [
     BrowserModule,

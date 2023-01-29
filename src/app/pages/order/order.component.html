@@ -1,31 +1,38 @@
-<ng-template [ngIf]="productsOnShoppingcart?.length">
+<ng-template [ngIf]="isAddress">
+  <ng-template [ngIf]="productsOnShoppingcart?.length">
 
-  <div *ngFor="let product of productsOnShoppingcart">
-    <div>
-      {{ product?.productName }}
+    <div *ngFor="let product of productsOnShoppingcart">
+      <div>
+        {{ product?.productName }}
+      </div>
+      <input type="number" [value]="product?.qty">
+      <span>{{ (product?.price * product?.qty) | number: '1.2-2' }}</span>
     </div>
-    <input type="number" [value]="product?.qty">
-    <span>{{ (product?.price * product?.qty) | number: '1.2-2' }}</span>
-  </div>
-  <span>{{ totalAmount | number: '1.2-2' }}</span>
+    <span>{{ totalAmount | number: '1.2-2' }}</span>
 
-</ng-template>
-<div *ngIf="!customerAddresses?.length; else customerAddressesTpl">
-  <app-form-user-address (onSubmit)="saveAddress($event)"></app-form-user-address>
-</div>
-<ng-template #customerAddressesTpl>
-  <div *ngFor="let address of customerAddresses">
-    <input type="radio" [value]="address?.id" (change)="setOrderAddress(address)">
-    <label>{{ address?.name }}</label>
+  </ng-template>
+  <div *ngIf="!customerAddresses?.length; else customerAddressesTpl">
+    <app-form-user-address (onSubmit)="saveAddress($event)"></app-form-user-address>
   </div>
-</ng-template>
-<div>
-  <h3>Direccion de facturación</h3>
+  <ng-template #customerAddressesTpl>
+    <div *ngFor="let address of customerAddresses">
+      <input type="radio" name="customerAddress" [value]="address?.id" (change)="setOrderAddress(address)">
+      <label>{{ address?.name }}</label>
+    </div>
+    <button (click)="addCustomerAddress()">Crear dirección</button>
+  </ng-template>
   <div>
-    <label>Misma dirección de envío
-      <input type="checkbox" (checked)="isSameCustomAddress" (change)="setBillingAddress()" [disabled]="!orderAddress">
-    </label>
+    <h3>Direccion de facturación</h3>
+    <div>
+      <label>Misma dirección de envío
+        <input type="checkbox" (checked)="isSameCustomAddress" (change)="setBillingAddress()" [disabled]="!orderAddress">
+      </label>
+    </div>
+    <app-form-user-address *ngIf="!isSameCustomAddress"  (onSubmit)="saveCustomerBillingAddress($event)" [isBilling]="true"></app-form-user-address>
   </div>
-  <app-form-user-address *ngIf="isSameCustomAddress"  (onSubmit)="saveBillingAdress($event)" [isBilling]="true"></app-form-user-address>
-</div>
-<button [disabled]="!orderAddress" (click)="nextOrderStep()">Siguiente</button>
+  <button [disabled]="!orderAddress || !customerBillingAddress" (click)="nextOrderStep()">Siguiente</button>
+</ng-template>
+
+<ng-template [ngIf]="!isAddress">
+  <router-outlet></router-outlet>
+</ng-template>

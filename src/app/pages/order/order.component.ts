@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomerAddressService } from '../../services/customer-address.service';
 import { OrderService } from '../../services/order.service';
 import { ShoppingcartService } from '../../services/shoppingcart.service';
@@ -20,10 +21,16 @@ export class OrderComponent implements OnInit {
 
   public isSameCustomAddress: boolean = false;
 
+  public customerBillingAddress: any;
+
+  public isAddress: boolean = true;
+
   constructor(
     private readonly shoppingcartService: ShoppingcartService,
     private readonly customerAddressService: CustomerAddressService,
-    private readonly orderService: OrderService
+    private readonly orderService: OrderService,
+    private readonly userService: UserService,
+    private readonly router: Router
   ) { }
 
   async ngOnInit() {
@@ -58,8 +65,10 @@ export class OrderComponent implements OnInit {
     }
 
     sessionStorage.setItem('order', JSON.stringify({'orderLocalId': order.localId}))
-
+    this.customerAddressService.setCustomerBillingAddress(this.customerBillingAddress);
     await this.orderService.setOrder(order);
+    this.isAddress = false;
+    this.router.navigateByUrl('/order/payment-methods');
   }
 
   private async getCustomerAddressees() {
@@ -67,20 +76,27 @@ export class OrderComponent implements OnInit {
       .then(addresses => this.customerAddresses = addresses)
   }
 
-  public saveBillingAdress(event) {
-    console.log(event)
+  public saveCustomerBillingAddress(billingAddress) {
+    if (billingAddress) {
+      billingAddress.userId = this.userService.getUser().userId;
+      delete billingAddress.name;
+      delete billingAddress.favourite;
+    }
+    this.customerBillingAddress = billingAddress;
   }
 
   setBillingAddress(): void {
     this.isSameCustomAddress = !this.isSameCustomAddress;
+    let billingAddress = null;
     if (this.isSameCustomAddress) {
-      const billingAddress = JSON.parse(JSON.stringify(this.orderAddress));
-      delete billingAddress.id;
-      delete billingAddress.name;
-      delete billingAddress.favourite;
-      this.customerAddressService.setCustomerBillingAddress(billingAddress);
+      billingAddress = JSON.parse(JSON.stringify(this.orderAddress));
+      delete billingAddress?.id;
     }
+    this.saveCustomerBillingAddress(billingAddress);
+  }
 
+  addCustomerAddress() {
+    console.log('')
   }
 
 }
