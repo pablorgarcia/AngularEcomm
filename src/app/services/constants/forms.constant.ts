@@ -9,7 +9,6 @@ const FORM_PRODUCT = {
   idProductCategory: ['', [Validators.required]]
 }
 
-
 const FORM_USER = {
   username: ['', [Validators.required]],
   firstname: ['', [Validators.required]],
@@ -35,15 +34,21 @@ const FORM_USER = {
 
 }
 
+const FORM_USER_ADDRESS = {
+  name: ['', Validators.required],
+  addressLine1: ['', Validators.required],
+  addressLine2: [''],
+  postCode: ['', Validators.required],
+  city: ['', Validators.required],
+  country: ['', Validators.required],
+  favourite: [false]
+}
 
-  const FORM_USER_ADDRESS = {
-    name: ['', Validators.required],
-    addressLine1: ['', Validators.required],
-    addressLine2: [''],
-    postCode: ['', Validators.required],
-    city: ['', Validators.required],
-    country: ['', Validators.required],
-    favourite: [false]
-  }
+const FORM_CREDIT_CARD = {
+  creditCardNumber: ['', Validators.required],
+  creditCardUserName: ['', Validators.required],
+  creditCardExpirationDate: ['', Validators.required],
+  creditCardSecurityCode: ['', Validators.required]
+}
 
-export { FORM_PRODUCT, FORM_USER, FORM_USER_ADDRESS }
+export { FORM_PRODUCT, FORM_USER, FORM_USER_ADDRESS, FORM_CREDIT_CARD }

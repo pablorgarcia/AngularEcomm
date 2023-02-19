@@ -87,7 +87,7 @@ export class OrderComponent implements OnInit {
 
   setBillingAddress(): void {
     this.isSameCustomAddress = !this.isSameCustomAddress;
-    let billingAddress = null;
+    let billingAddress: any = null;
     if (this.isSameCustomAddress) {
       billingAddress = JSON.parse(JSON.stringify(this.orderAddress));
       delete billingAddress?.id;
