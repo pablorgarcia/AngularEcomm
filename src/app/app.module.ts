@@ -13,6 +13,7 @@ import { ChatModule } from './pages/chat/chat.module';
 import { firebaseConfig } from './services/config';
 import { AngularFireModule } from '@angular/fire/compat';
 import { OrderPaymentMethodsComponent } from './pages/order-payment-methods/order-payment-methods.component';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { OrderPaymentMethodsComponent } from './pages/order-payment-methods/orde
     AccountModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

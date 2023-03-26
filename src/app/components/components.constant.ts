@@ -6,6 +6,7 @@ import { ProductCategoryCrudComponent } from './product-category/product-categor
 import { UserCrudComponent } from './user/user-crud/user-crud.component';
 import { RegisterCustomerComponent } from './account/register-customer/register-customer.component';
 import { FormUserAddressComponent } from './user/forms/form-user-address/form-user-address.component';
+import { PaymentMethodFormComponent } from './payment-method/payment-method-form/payment-method-form.component';
 
 const COMPONENTS = [
   // Product
@@ -19,7 +20,9 @@ const COMPONENTS = [
   UserCrudComponent,
   FormUserAddressComponent,
   // Account
-  RegisterCustomerComponent
+  RegisterCustomerComponent,
+  // Payment Method
+  PaymentMethodFormComponent
 ];
 
 export { COMPONENTS }

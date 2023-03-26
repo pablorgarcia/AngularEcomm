@@ -11,37 +11,6 @@
 
 <div>
   <ng-template [ngIf]="paymentMethodSelected === 2">
-    <form [formGroup]="formCreditCard">
-      <div>
-        <label>Nombre</label>
-        <input type="text" formControlName="creditCardUserName">
-      </div>
-      <div>
-        <label>Número de tarjeta</label>
-        <input type="text" formControlName="creditCardNumber">
-      </div>
-      <div>
-        <label>Fecha de caducidad</label>
-        <div style="display: inline;">
-          Mes
-          <select (change)="selectMonth($event?.targer?.value)">
-            <option *ngFor="let month of months" [ngValue]="month">{{ month + 1 }}</option>
-          </select>
-        </div>
-        <div style="display: inline;">
-          Año
-          <select (change)="selectYear($event?.targer?.value)">
-            <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <label>Códigdo de seguridad</label>
-        <input type="text" formControlName="creditCardUserName">
-      </div>
-      <div>
-        <button [disabled]="!formCreditCard?.valid">Pagar</button>
-      </div>
-    </form>
+    <app-payment-method-form></app-payment-method-form>
   </ng-template>
 </div>

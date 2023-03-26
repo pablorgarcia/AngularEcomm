@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { OrderRoutingModule } from './order-routing.module';
 import { OrderComponent } from './order.component';
-import { ComponentsModule } from '../../components/components.module';
 
 
 @NgModule({
@@ -12,7 +11,6 @@ import { ComponentsModule } from '../../components/components.module';
   ],
   imports: [
     CommonModule,
-    ComponentsModule,
     OrderRoutingModule
   ]
 })

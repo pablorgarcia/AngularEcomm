@@ -8,7 +8,7 @@ import { OrderPaymentMethodsRoutingModule } from './order-payment-methods-routin
   declarations: [],
   imports: [
     CommonModule,
-    OrderPaymentMethodsRoutingModule
+    OrderPaymentMethodsRoutingModule,
   ]
 })
 export class OrderPaymentMethodsModule { }

@@ -30,8 +30,7 @@ const FORM_USER = {
     ]
   ],
   email: ['', [Validators.required]],
-  phone: ['', [Validators.required]],
-
+  phone: ['', [Validators.required]]
 }
 
 const FORM_USER_ADDRESS = {
