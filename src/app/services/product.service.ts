@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore/lite';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { ConfigService } from './config.service';
 
@@ -14,7 +15,12 @@ export class ProductService {
   // consumimos menos memoria con el static
   private static products: Product[];
 
-  constructor() {}
+  productSubject = new BehaviorSubject<Product[]>([]);
+  products$: Observable<Product[]>;
+
+  constructor() {
+    this.products$ = this.productSubject.asObservable();
+  }
 
   async getProducts(): Promise<Product[]> {
     if (!ProductService.products) {
@@ -23,6 +29,7 @@ export class ProductService {
       const productList = productSnapshot.docs.map(doc => ({id: doc?.id, ...doc?.data()}));
       ProductService.products = productList as Product[];
     }
+    this.productSubject.next(ProductService.products);
     return ProductService.products;
   }
 

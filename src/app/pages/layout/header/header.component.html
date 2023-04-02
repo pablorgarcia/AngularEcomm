@@ -1,7 +1,7 @@
 <ul>
   <ng-template [ngIf]="menu?.length">
     <li *ngFor="let link of menu">
-      <a routerLink="{{link?.url}}">{{ link?.name }}</a>
+      <a routerLink="{{link?.url}}">{{ link?.name | translate }}</a>
     </li>
   </ng-template>
   <li *ngIf="!isLogged">
@@ -9,5 +9,8 @@
   </li>
   <li *ngIf="isLogged">
     <a (click)="logout()" ngClass="logout">Logout</a>
+  </li>
+  <li *ngFor="let lang of langs">
+    <a (click)="onChangLang()">{{ lang }}</a>
   </li>
 </ul>

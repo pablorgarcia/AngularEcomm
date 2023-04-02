@@ -1,7 +1,7 @@
 export const MENU_ADMIN = [
   {
     url: '/admin/product',
-    name: 'Product'
+    name: 'menu.product'
   },
   {
     url: '/admin/product-category',

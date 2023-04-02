@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
 
 import { subheaderData } from 'src/app/shared/components/subheader/subheader.interface';
 import { ButtonData } from 'src/app/shared/components/button/button.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -27,21 +28,23 @@ export class ProductListComponent implements OnInit {
   }
   public isAdmin = false;
 
+  private subs: Subscription[] = [];
+
   constructor(
     private readonly router: Router,
     private readonly productService: ProductService,
     private readonly location: Location
   ) { }
 
-  ngOnInit(): void {
-    this.isAdmin = Boolean(window.location.href.includes('admin'))
-    this.getProductList();
+  async ngOnInit() {
+    this.isAdmin = Boolean(window.location.href.includes('admin'));
+    await this.getProductList();
+    const sub = this.productService.products$.subscribe(products => this.products = products);
+    this.subs.push(sub);
   }
 
   private getProductList() {
-    this.productService.getProducts().then(data => {
-      this.products = data;
-    });
+    this.productService.getProducts();
   }
 
   goToNewProduct(): void {
@@ -55,6 +58,10 @@ export class ProductListComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
 }

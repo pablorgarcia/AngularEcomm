@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
 import { MENU_ADMIN, MENU_CUSTOMER, MENU_GLOBAL } from '../../../services/constants/menu.constant';
 import { UserService } from '../../../services/user.service';
+import { i18nService } from '../../../services/i18n.service';
 
 
 @Component({
@@ -11,16 +12,21 @@ import { UserService } from '../../../services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  isLogged = false;0
-  menu = [];
+  public isLogged = false;
+  public menu = [];
   private hasShoppingcartProducts = false;
+
+  public langs: string[];
 
   constructor(
     private userService: UserService,
-    private shoppingcartService: ShoppingcartService
+    private shoppingcartService: ShoppingcartService,
+    private readonly i18nService: i18nService
     ) { }
 
   async ngOnInit() {
+    this.i18nService.getLang();
+    this.langs = this.i18nService.getLangs()
     this.menu = MENU_GLOBAL;
     this.userService.user$.subscribe(user => {
       this.isLogged = Boolean(user);
@@ -46,6 +52,10 @@ export class HeaderComponent implements OnInit {
         this.setShoppingCartMenu();
       }
     })
+  }
+
+  onChangLang(lang: string): void {
+    this.i18nService.setLang(lang)
   }
 
   private setShoppingCartMenu(): void {

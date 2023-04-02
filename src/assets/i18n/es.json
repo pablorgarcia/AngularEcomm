@@ -1,0 +1,9 @@
+{
+  "menu": {
+    "product": "Productos",
+    "register": "Registro",
+    "chat": "Chat",
+    "shoppingcart": "Carrito",
+    "logout": "Logout"
+  }
+}

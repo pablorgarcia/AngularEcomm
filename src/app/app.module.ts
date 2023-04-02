@@ -14,7 +14,13 @@ import { firebaseConfig } from './services/config';
 import { AngularFireModule } from '@angular/fire/compat';
 import { OrderPaymentMethodsComponent } from './pages/order-payment-methods/order-payment-methods.component';
 import { ComponentsModule } from './components/components.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -33,7 +39,15 @@ import { ComponentsModule } from './components/components.module';
     AccountModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    ComponentsModule
+    ComponentsModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
