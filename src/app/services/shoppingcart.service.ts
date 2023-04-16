@@ -33,7 +33,7 @@ export class ShoppingcartService {
       const shoppingSnapshot = await getDocs(this.shoppingCollection) as any;
       const shoppingcartList = shoppingSnapshot.docs
         .map(doc => ({id: doc?.id, ...doc?.data()}))
-        .filter(({userId}) => userId === user.uid);
+        .filter(({userId}) => userId === user?.uid);
       ShoppingcartService.shoppingcart = shoppingcartList as [];
     }
 

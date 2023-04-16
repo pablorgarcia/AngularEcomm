@@ -13,16 +13,16 @@ import { Observable, Subject } from 'rxjs';
 export class CustomerAddressService {
 
   private customerAddressCollection = collection( ConfigService.getFirestoreApp(), 'CustomerAddress');
-  private customerBillingAddressCollection = collection( ConfigService.getFirestoreApp(), 'CustomerBillingAddress');
+  private customerBillingAddressesCollection = collection( ConfigService.getFirestoreApp(), 'CustomerBillingAddress');
   private static customerAddress: any[];
-  private static customerBillingAddress: any[];
+  private static customerBillingAddresses: any[];
 
   constructor() { }
 
   async getCustomerAddress() {
     if (!CustomerAddressService.customerAddress) {
       const user = JSON.parse(sessionStorage.getItem('user'))
-      // Traemos los productos que estaán en la DB
+      // Traemos los productos que están en la DB
       const customerAddressSnapshot = await getDocs(this.customerAddressCollection) as any;
       const customerAddressList = customerAddressSnapshot.docs
         .map(doc => ({id: doc?.id, ...doc?.data()}))
@@ -31,6 +31,20 @@ export class CustomerAddressService {
     }
 
     return CustomerAddressService.customerAddress;
+  }
+
+  async getCustomerBillingAddresses() {
+    if (!CustomerAddressService.customerBillingAddresses) {
+      const user = JSON.parse(sessionStorage.getItem('user'))
+      // Traemos los productos que están en la DB
+      const customerBillingAddressesSnapshot = await getDocs(this.customerBillingAddressesCollection) as any;
+      const customerBillingAddressesList = customerBillingAddressesSnapshot.docs
+        .map(doc => ({id: doc?.id, ...doc?.data()}))
+        .filter(({userId}) => userId === user.uid);
+        CustomerAddressService.customerBillingAddresses = customerBillingAddressesList as [];
+    }
+
+    return CustomerAddressService.customerBillingAddresses;
   }
 
   async setCustomerAddress(address) {
@@ -43,7 +57,7 @@ export class CustomerAddressService {
   async setCustomerBillingAddress(address) {
     const user = JSON.parse(sessionStorage.getItem('user'));
     address.userId = user?.uid;
-    await addDoc(this.customerBillingAddressCollection, address);
+    await addDoc(this.customerBillingAddressesCollection, address);
     CustomerAddressService.clearBillingAddresses();
   }
 
@@ -52,7 +66,7 @@ export class CustomerAddressService {
   }
 
   private static clearBillingAddresses() {
-    CustomerAddressService.customerBillingAddress = null;
+    CustomerAddressService.customerBillingAddresses = null;
   }
 
 }

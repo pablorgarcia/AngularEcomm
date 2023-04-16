@@ -5,24 +5,24 @@ export const MENU_ADMIN = [
   },
   {
     url: '/admin/product-category',
-    name: 'Product category'
+    name: 'menu.product-category'
   },
 ];
 
 export const MENU_CUSTOMER = [
   {
     url: '/product',
-    name: 'Product'
+    name: 'menu.product'
   }
 ];
 
 export const MENU_GLOBAL = [
   {
     url: '/account/register',
-    name: 'Register'
+    name: 'menu.register'
   },
   {
     url: '/chat',
-    name: 'Chat'
+    name: 'menu.chat'
   }
 ]

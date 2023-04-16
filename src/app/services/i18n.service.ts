@@ -1,28 +1,21 @@
 import { Injectable } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-
-const LANGS = ['es', 'en'];
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class i18nService {
+export class I18nService {
 
   constructor(
-    private readonly translate: TranslateService
-  ) { }
+    private readonly translateService: TranslateService
+    ) { }
 
-  getLang(): void {
-    console.log(this.translate.currentLang)
+  public getLangs(): string[]{
+    return ['es', 'en'];
   }
 
-  getLangs(): string[] {
-    return LANGS;
-  }
-
-  setLang(lang: string): void {
-    this.translate.use(lang)
-    this.getLang();
+  public setLang(lang: string): void {
+    this.translateService.use(lang);
   }
 
 }
